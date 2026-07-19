@@ -1,3 +1,13 @@
+//modifications: 1. add a menu 2. caluclate sum depending on item category
+
+const readline = require("readline");
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+
 function createExpenseTracker()
 {
     let expense=[];
@@ -49,16 +59,73 @@ function createExpenseTracker()
         
 }
 
-const result= createExpenseTracker();
-result.addExpense("maggie", "food", 10);
-result.addExpense("fab", "detergent", 10);
-result.addExpense("shoes", "footwear", 10);
-result.addExpense("pencil", "stationary", 10);
-result.addExpense("kurti", "fashion", 10);
+function main()
+{
+    const result = createExpenseTracker();
+    
+    function showMenu()
+    {
+       
+        console.log("MENU");
+        console.log("1. Add Expense");
+        console.log("2. Delete Expense ");
+        console.log("3. Show all expenses");
+        console.log("4. Caculate total amount");
+        console.log("5. EXIT");
 
-result.showExpenses();
-result.totalExpenses();
+        rl.question("Enter ypur choice", function(choice){
+            switch(choice)
+            {
+                case "1":
+                    rl.question("Enter item name:", function(name){
+                        rl.question("Enter the item category:", function(category){
+                            rl.question("Enter the amount:",function(amount){
+                                result.addExpense(name, category, Number(amount));
+                                showMenu();
+                            });
+                        });
+                    });
+                    break;
 
-result. deleteExpense();
-result.showExpenses();
-result.totalExpenses();
+                case "2":
+                    result.deleteExpense();
+                    showMenu();
+                    break;
+
+                case "3":
+                    result.showExpenses();
+                    showMenu();
+                    break;
+
+                case "4":
+                    result.totalExpenses();
+                    showMenu();
+                    break;
+
+                case "5":
+                    console.log('Exiting Expense Tracker.....');
+                    rl.close();
+                    
+                    break;
+
+                default:
+                    console.log("Invalid choice");
+                    showMenu();
+                    
+            }
+        });
+       
+    }
+
+    showMenu();
+    
+    
+    
+   
+
+    
+}
+
+main();
+
+
