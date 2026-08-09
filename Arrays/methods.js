@@ -23,6 +23,9 @@ function Allmethods()
     console.log("removed element:",remove);
     console.log("array after we removed an element:",arr1);
 
+    const rem= delete arr1[1];
+    console.log(arr1);
+
     //add
     const add= arr1.splice(1,0,99);
     console.log("removed element:", add);
