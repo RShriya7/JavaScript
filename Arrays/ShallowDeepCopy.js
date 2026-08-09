@@ -62,3 +62,52 @@ const obj5= {
 
 const obj6 = Object.assign({},obj5);
 console.log(obj6);
+
+//----------------------DEEP COPY-----------------------------------------------; this copy completely creates an independent copy of the original. no sharing
+console.log("---------------------DEEP COPY----------------------------------")
+// we having two ways to create a deepcopy.
+//1. structuredClone()
+const user1={
+    name:"shriya",
+    address:
+    {
+        city:"hyd"
+    }
+};
+console.log("-----1. STRUCTURED CLONE----------------------");
+const user2=structuredClone(user1);
+user2.address.city="chennai";
+
+console.log(user1);
+console.log(user2);
+
+//2. JSON METHOD
+
+console.log("----------2.JSON METHOD----------------------");
+const arr7 =[1,2,3,4];
+const arr8 = JSON.parse(JSON.stringify(arr7));
+
+console.log(arr7);
+console.log(arr8);
+arr8.push(5);
+console.log(arr8);
+
+const obj = {
+    name:"abc",
+    greet(){
+        console.log("Hi");
+    },
+    value:undefined,
+    date:new Date()
+};
+
+
+console.log(JSON.stringify(obj));
+
+
+
+//sparse array 
+console.log("-----------------SPARSE ARRAY ----------------------------")
+const array=[];
+array[7]=8;
+console.log(array);
